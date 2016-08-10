@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Debug
+/.vscode
+/.vs/Rename-By-File/v14
+/Rename-By-File.vcxproj.user
+/Rename-By-File.vcxproj.filters
+/Rename-By-File.VC.VC.opendb
+/Rename-By-File.VC.db
+/Rename-By-File.sln

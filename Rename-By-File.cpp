@@ -1,4 +1,4 @@
-#include "Includes.h"
+#include "libraries.h"
 #include "rename-by-file.h"
 
 using namespace std;
@@ -14,12 +14,12 @@ int main(int argument_count, char* arguments[])
 	_chdir(arguments[1]);
 
 	vector<dirent*> files;
-	parseDirectory(arguments[1], &files);
+	parse_directory(arguments[1], &files);
 
-	Name2NameMap name_map;
-	parseNameFile((argument_count == 2 ? arguments[2] : arguments[1]), &name_map);
+	pairvec name_vector;
+	parse_name_file((argument_count == 2 ? arguments[2] : arguments[1]), name_vector);
 
-	for each (pair<string, string> name_pair in name_map)
+	for each (strpair name_pair in name_vector)
 	{
 		//TODO: Search for file base on name_pair.first, then replace with name_pair.second while being extension agnostic
 	}
@@ -27,7 +27,7 @@ int main(int argument_count, char* arguments[])
     return 0;
 }
 
-void parseDirectory(char* sDirectoryPath, vector<dirent*> *rFiles)
+void parse_directory(char* sDirectoryPath, vector<dirent*> *rFiles)
 {
 	DIR *pDirectory;
 	struct dirent *pEntry;
@@ -45,9 +45,9 @@ void parseDirectory(char* sDirectoryPath, vector<dirent*> *rFiles)
 	}
 }
 
-void parseNameFile(char* file_path, Name2NameMap *name_change_map)
+void parse_name_file(char* file_path, pairvec &name_vector)
 {
-	std::string current_line;
+	string current_line;
     fstream name_file;
 	name_file.open(file_path);
 
@@ -60,14 +60,26 @@ void parseNameFile(char* file_path, Name2NameMap *name_change_map)
 	/* Go through all lines, save the left part of line as old name, right half as new name */
 	while(getline(name_file, current_line))
 	{
-		int name_seperator_location;
+		int name_seperator_location = 0;
 		current_line.find_first_of(" ", name_seperator_location);
 
 		string old_name = current_line.substr(0, name_seperator_location);
 		string new_name = current_line.substr(name_seperator_location + 1, current_line.length() - name_seperator_location - 1);
 
-		name_change_map->insert(pair<string, string>(old_name, new_name));
+		largefirst_insert(strpair(old_name, new_name), name_vector);
 	}
+}
+
+void largefirst_insert(strpair pair, pairvec &name_vector)
+{
+	pairvec::iterator it = name_vector.begin();
+	do
+	{
+		if (pair.first.length() >= (it + 1)->first.length())
+		{
+			name_vector.insert(it, pair);
+		}
+	} while (++it != name_vector.end());
 }
 
 void help()

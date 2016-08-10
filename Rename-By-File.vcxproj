@@ -100,7 +100,7 @@
     <ClCompile Include="rename-by-file.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes.h" />
+    <ClInclude Include="libraries.h" />
     <ClInclude Include="rename-by-file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

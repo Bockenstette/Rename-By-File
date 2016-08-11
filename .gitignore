@@ -10,3 +10,6 @@
 /Rename-By-File.VC.VC.opendb
 /Rename-By-File.VC.db
 /Rename-By-File.sln
+/x64/Release
+/x64/Debug
+!/x64/Release/rename-by-file.exe

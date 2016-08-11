@@ -10,4 +10,4 @@
 #include <direct.h>
 
 typedef std::pair<std::string, std::string> strpair;
-typedef std::vector<strpair> pairvec;
+typedef std::vector<strpair> strpairvec;

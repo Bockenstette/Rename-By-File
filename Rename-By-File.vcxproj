@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DC308C07-59CF-41AA-B2B8-609B31CB2C72}</ProjectGuid>
+    <ProjectGuid>{BA56AE6D-4DC5-4FCD-A75C-7E7716C188EC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <ProjectName>rename-by-file</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -97,11 +98,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="rename-by-file.cpp" />
+    <ClCompile Include="src\rename-by-file.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libraries.h" />
-    <ClInclude Include="rename-by-file.h" />
+    <ClInclude Include="src\libraries.h" />
+    <ClInclude Include="src\rename-by-file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

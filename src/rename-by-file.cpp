@@ -11,6 +11,8 @@ int main(int argument_count, char* arguments[])
         return -1;
     }
 
+	///TODO: Make it so program runs w/o args. Should be able to just run in dir wanted, and it will rename
+
 	//Get all name pairs from the text file
 	strpairvec name_vector;
 	parse_name_file((argument_count == 3 ? arguments[2] : arguments[1]), 
@@ -37,7 +39,7 @@ int main(int argument_count, char* arguments[])
 			for (unsigned i = 0; i < name_vector.size(); i++)
 			{
 				//If the old name from the text file is within the current filename
-				//TODO: This will most likely run into problems with smaller file names, maybe handle better
+				///TODO: This will most likely run into problems with smaller file names, maybe handle better
 				if (strstr(file.cFileName, name_vector[i].first.c_str()) != NULL)
 				{
 					//get the file extension
@@ -46,9 +48,11 @@ int main(int argument_count, char* arguments[])
 					strcat(new_name, name_vector[i].second.c_str());
 					strcat(new_name, extension);
 
+					///TODO: Check what happens when rename conflicts happen, then fix accordingly
 					//Rename the current file then delete the current pair
 					rename(file.cFileName, new_name);
 					name_vector.erase(name_vector.begin() + i);
+
 					break;
 				}
 			}
@@ -68,7 +72,7 @@ void parse_name_file(char* file_path, char seperator, strpairvec &name_vector)
 	string current_line;
     fstream name_file;
 
-	//TODO: Make it so it defaults to .txt -> .rtf, then quits if no unique of either, unless it is specified
+	///TODO: Make it so it defaults to .txt -> .rtf, then quits if no unique of either, unless it is specified
 
 	name_file.open(file_path);
 
@@ -78,6 +82,7 @@ void parse_name_file(char* file_path, char seperator, strpairvec &name_vector)
 		return;
 	}
 
+	///TODO: Add ignore chars? If first char = #|$|%|&|etc. skip line
 	/* Go through all lines, save the left part of line as old name, right half as new name */
 	while(getline(name_file, current_line))
 	{
